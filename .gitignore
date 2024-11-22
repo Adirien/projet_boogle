@@ -4,3 +4,4 @@ Thumbs.db
 boogle.sln
 /boogle/bin/*
 /boogle/obj/*
+/boogle/boogle.csproj
