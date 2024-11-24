@@ -3,21 +3,25 @@ using System.Reflection.Metadata;
 
 namespace boogle;
 
+ //on ne peut pas avoir 2 fois le meme dé !!
+
 public class Plateau
 {
-        private De[] tDe;
+        private De[] tabDe;
         private int taille ;
+        Alphabet alphabet;
 
-        public Plateau(int taille){
-                this.tDe = new De[taille*taille];
+        public Plateau(Alphabet alphabet , int taille){
+                this.tabDe = new De[ taille*taille];
                 this.taille = taille;
+                this.alphabet = alphabet;       
         }
 
         /*
                 on genere ici le plateau
         */
         public void genererPlateau(){
-                int nb_face = (int)Math.Sqrt(this.taille)*6;
+                alphabet.ReInitialiserNbDisparition();
 
         }
 
