@@ -15,6 +15,9 @@ public class Alphabet
     }
 
     private int taillePlateau;
+    public int getTaillePlateau(){
+        return this.taillePlateau;
+    }
     //nombre de lettres que l'on a au total dans le jeu 
     private int nombreLettreJeu ;
     public Alphabet(int taille_plateau){
@@ -22,6 +25,7 @@ public class Alphabet
         this.taillePlateau = taille_plateau;
         this.nombreLettreJeu = (int)(Math.Pow(taille_plateau,2)*6);
         this.readLettreFile();
+        this.RepartitionFrequenceLettre();  
     }
 
     /// <summary>
@@ -29,7 +33,7 @@ public class Alphabet
     /// on lit le ficher Lettre qui se trouve dans le meme repertoire que la fichier contenant la classe.
     /// on place toutes les lettres dans un dictionnaire 
     /// </summary>
-    public void readLettreFile(){
+    private void readLettreFile(){
         // on lit les lignes du fihier Lettres.txt qui se trouve au meme niveau que la classe Alphabet
         String line;
         try
@@ -71,8 +75,8 @@ public class Alphabet
     /// methode qui permet de calculer le nombre de fois qu'une lettre apparait.
     /// Pour cela on a besoin de la taille du plateau et de la frequence d'apparation de la lettre en pourcentage
     /// </summary>
-    public void RepartitionFrequenceLettre(){
-        
+    private void RepartitionFrequenceLettre(){
+        // @Note  Methide qui devra etre  private
         
         // on compte le nombre total de fois qu'apparait une lettre
         int sigma_frequence = 0;
@@ -140,8 +144,8 @@ public class Alphabet
     }// fin methode ReInitialiserNbDisparition
 
     /// <summary>
-    /// On enleve pour le symbole representatnt une lettre 
-    /// une unité au champ nbDisparation
+    /// On enleve pour le symbole representant une lettre 
+    /// une unité au champ nbDisparition
     /// Tant que cette valeur est >0 on peut en enlever on revoit alors True
     /// Si nbDispariton = 0 alors on ne peut pas en enlever et on renvoie False
     /// </summary>
@@ -158,10 +162,24 @@ public class Alphabet
     }// fin EnleverLettre 
 
     /// <summary>
-    /// Renvoie le nombre de lettre en france  on aura 26
+    /// Renvoie le nombre de lettre: en france  on aura 26
     /// </summary>
     /// <returns></returns>
     public int NombreLettre(){
         return this.dicoLettre.Count;
+    }
+
+    /// <summary>
+    /// methode qui renvoie les lettres dont on n'a pas la meme valeur entre lettreApparition et lettreDisparition
+    /// </summary>
+    /// <returns></returns>
+    public string NombrelettreDisparue(){
+        string s = "";
+        foreach(Lettre lettre in this.dicoLettre.Values){
+            if(lettre.NbApparition != lettre.NbDisparition){
+                s += lettre.Symbole + " - apparition: " + Convert.ToString(lettre.NbApparition) + " - disparition: " + Convert.ToString(lettre.NbDisparition)+"\n";
+            }
+        }
+        return s;
     }
 }
