@@ -3,7 +3,7 @@ using System.Runtime.InteropServices.Marshalling;
 
 namespace boogle;
 
-public class Partie
+public class Jeu
 {
     public int taillePlateau { get; set;}
     public string langue { get; set;}
@@ -12,7 +12,7 @@ public class Partie
     private Random random;
     private De[] des ;
 
-    public Partie(int taille_plateau,string langue){
+    public Jeu(int taille_plateau,string langue){
         this.taillePlateau = taille_plateau;
         this.langue = langue;
         this.des= new De[(int)Math.Pow(this.taillePlateau,2)];
@@ -22,7 +22,7 @@ public class Partie
 
     public void generer(){
         Console.WriteLine("----------------------------------------------------------");
-        this.des = De.generer(this.alphabet,this.random);
+        this.des = De.genererDe(this.alphabet,this.random);
         foreach(De de in this.des){
             if(de == null){
                 Console.WriteLine("dé null");

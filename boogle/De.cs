@@ -6,9 +6,9 @@ namespace boogle;
 
 public class De
 {
-    Alphabet alphabet ;
-    Random random;
-    Lettre[] tabLettre;
+    //Alphabet alphabet ;
+   // Random random;
+    //Lettre[] tabLettre;
     List<Lettre> listLettre;
     
     // Lettre lettreVisible;
@@ -17,25 +17,25 @@ public class De
     //     get {return lettreVisible;}
     // } 
 
-    public static De generation(Alphabet alphabet, Random random){
-        Console.WriteLine("Generation De");
-        Lettre[] tabLettre = new Lettre[6];
-        string[] tabSymbole = alphabet.DicoLettre.Keys.ToArray();//utilisatin de system.linq
-        int index_tab = 0;
-        while (index_tab <6){
-            int idx = random.Next(0,alphabet.NombreLettre());
+    // public static De generation(Alphabet alphabet, Random random){
+    //     Console.WriteLine("Generation De");
+    //     Lettre[] tabLettre = new Lettre[6];
+    //     string[] tabSymbole = alphabet.DicoLettre.Keys.ToArray();//utilisatin de system.linq
+    //     int index_tab = 0;
+    //     while (index_tab <6){
+    //         int idx = random.Next(0,alphabet.NombreLettre());
             
-            if( alphabet.EnleverLettre(tabSymbole[idx])){
-                tabLettre[index_tab] = alphabet.DicoLettre[tabSymbole[idx]];
-                index_tab +=1;
-            }
-        }
-        De de = new De();
-        de.tabLettre = tabLettre;
-        return de;
-    }
+    //         if( alphabet.EnleverLettre(tabSymbole[idx])){
+    //             tabLettre[index_tab] = alphabet.DicoLettre[tabSymbole[idx]];
+    //             index_tab +=1;
+    //         }
+    //     }
+    //     De de = new De();
+    //     de.tabLettre = tabLettre;
+    //     return de;
+    // }
 
-    public static De[] generer(Alphabet alphabet, Random random){
+    public static  De[] genererDe(Alphabet alphabet, Random random){
         De[] des = new De[(int) Math.Pow(alphabet.getTaillePlateau(),2)];
         //initialisation de chaque dé
         for (int i = 0 ; i < (int) Math.Pow(alphabet.getTaillePlateau(),2);i++){
@@ -151,9 +151,9 @@ public class De
     /// Methode qui renvoie la Lettre qui est visible sur le de considere
     /// </summary>
     /// <returns></returns>
-    public Lettre lettreFace(){
+   /* public Lettre lettreFace(){
         return this.tabLettre[this.random.Next(0,6)];
-    }
+    }*/
 
     
 }
