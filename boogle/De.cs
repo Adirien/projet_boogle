@@ -10,6 +10,10 @@ public class De
     Random random;
     Lettre[] tabLettre;
     List<Lettre> listLettre;
+
+    public List<Lettre> ListLettre{
+        get{return listLettre;}
+    }
     
     // Lettre lettreVisible;
 
@@ -35,7 +39,7 @@ public class De
         return de;
     }
 
-    public static De[] generer(Alphabet alphabet, Random random){
+    public static De[] genererDe(Alphabet alphabet, Random random){
         De[] des = new De[(int) Math.Pow(alphabet.getTaillePlateau(),2)];
         //initialisation de chaque dé
         for (int i = 0 ; i < (int) Math.Pow(alphabet.getTaillePlateau(),2);i++){

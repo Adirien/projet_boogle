@@ -41,6 +41,13 @@ class Prog {
 
     }
 
+    public static void testerParametre(){
+        Parametre parametre = new Parametre();
+        Console.WriteLine(parametre.ToString());
+        parametre.ChangerTaillePLateau();
+        Console.WriteLine(parametre.ToString());
+
+    }
     public static void Main(){
         // Console.WriteLine("Hello, World!");
         // int taille_plateau = 5;
@@ -64,8 +71,14 @@ class Prog {
         // Console.WriteLine("count {0}",entiers.Count());
 
         // // Prog.testPartie();
-        Partie partie = new Partie(4,"FR");
-        partie.generer();
+        // Partie partie = new Partie(4,"FR");
+        // partie.generer();
+
+        // // test Jeu
+        // Jeu jeu = new Jeu(4,"FR");
+        // jeu.initialisation();
+
+        testerParametre();
 
         // test de dé
         // testDe();

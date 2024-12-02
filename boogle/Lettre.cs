@@ -12,6 +12,7 @@ public class Lettre
     // nombre de fois que l'on doit voir cette lettre dans le plateau taillePlateau²*6
     private int nbApparition;
     //nombre de fois que l'on peut encore faire apparaitre la lettre dans differents dés
+
     private int nbDisparition;
     
     public string Symbole
