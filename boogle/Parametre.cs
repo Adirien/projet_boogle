@@ -16,7 +16,10 @@ public class Parametre
 {
 
 
-        public int taillePlateau {get;}
+        public int taillePlateau= 4;
+        public int TaillePlateau {
+                get{return taillePlateau;}
+        }
         
         private string langue = "FR";
         public string Langue{
@@ -36,7 +39,7 @@ public class Parametre
         // peut etre ajouter le chemin vers les fichiers
         public Parametre()
         {
-         taillePlateau = 4;
+        
 
         }
 
@@ -94,7 +97,7 @@ public class Parametre
 
 
         public void ChangerDuree(){
-                Console.WriteLine("Quelle est la durée en seconde chaque tour? ");
+                Console.WriteLine("Quelle est la durée en seconde de chaque tour? ");
                 bool continuer = true;
                 while(continuer)
                 {
@@ -131,7 +134,20 @@ public class Parametre
                 }
         }
 
+        public void MsgParametrage(){
+                Console.WriteLine(this.ToString());
+                Console.WriteLine("Tapez ENTREE pour valider le parametre actuel, sinon saisissez une valeur.");
+                /*
+                        Console.Write("Press <Enter> to exit... ");
+                        while (Console.ReadKey().Key != ConsoleKey.Enter) {}
+                        https://learn.microsoft.com/fr-fr/dotnet/api/system.console.readkey?view=net-9.0
 
+                */
+                this.ChangerTaillePLateau();
+                this.ChangerLangue();
+                this.ChangerDuree();
+                this.ChangerNbTour();
+        }
 
 
         public override string ToString()

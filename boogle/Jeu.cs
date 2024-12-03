@@ -35,9 +35,16 @@ public class Jeu
             Console.WriteLine("Que voulez vous faire?\nTapez:");
             Console.WriteLine("1 Jouer a Boogle");
             Console.WriteLine("2 Configurer le jeu");
+            Console.WriteLine("3 Quitter le jeu");
             string sreponse = Console.ReadLine();
             try{
                 int reponse = Convert.ToInt32(sreponse);
+                if(reponse == 1){
+                    this.Jouer();
+                }
+                else if(reponse == 2){
+                    this.parametre.MsgParametrage();
+                }
             }
             catch(Exception e){
 
@@ -50,6 +57,19 @@ public class Jeu
         
     }
 
+    private void Jouer(){
+        this.MSgCreerJoueur();
+        this.LancerPartie
+    }
+
+    public void MSgCreerJoueur(){
+
+    }
+
+
+    public void LancerPartie(){
+
+    }
 
     public void initialisation()
     {
