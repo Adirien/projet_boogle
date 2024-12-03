@@ -5,4 +5,7 @@ boogle.sln
 /boogle/bin/*
 /boogle/obj/*
 /boogle/boogle.csproj
-/boogle/Lettres.txt
+/boogletest/boogletest.csproj
+/boogletest/bin/*
+/boogletest/obj/*
+

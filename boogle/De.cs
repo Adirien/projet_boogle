@@ -9,6 +9,8 @@ public class De
     Alphabet alphabet ;
     Random random;
     Lettre[] tabLettre;
+    List<Lettre> listLettre;
+    
     // Lettre lettreVisible;
 
     // public Lettre face{ 
@@ -33,36 +35,111 @@ public class De
         return de;
     }
 
-    public De(Alphabet alphabet,Random random){
-        this.alphabet = alphabet;
-           
-        this.random = random;
-        this.tabLettre = new Lettre[6];
-        this.GenererDe();
+    public static De[] generer(Alphabet alphabet, Random random){
+        De[] des = new De[(int) Math.Pow(alphabet.getTaillePlateau(),2)];
+        //initialisation de chaque dé
+        for (int i = 0 ; i < (int) Math.Pow(alphabet.getTaillePlateau(),2);i++){
+            De de = new De();
+            des[i]= de;
+        }
+        foreach(Lettre lettre in alphabet.DicoLettre.Values){
+            Console.WriteLine("############  lettre en cours {0}",lettre.Symbole);
+            // on boucle sur le nombre de disparition possible de la lettre
+            for(int nb =0; nb< lettre.NbApparition;nb++){
+                Console.WriteLine("valeur du nombre d'appartion: {0}",nb);
+                //on choisit le dé dans lequel on ajoute la lettre
+                bool arreter = false;
+                while (! arreter){
+                    int index_de = random.Next(des.Length);
+                    Console.WriteLine("choix dé n° {0}",index_de);
+                    Console.WriteLine("valeur contiens2fois: {0}",des[index_de].Contient2Fois(lettre));
+                    arreter = des[index_de].Add(lettre);
+                    
+                }              
+
+
+            }
+            
+        }
+
+        return des;
     }
+
 
     public De(){
-
+        this.listLettre = new List<Lettre>();
     }
 
-    private void GenererDe(){
-        for (int i = 0; i < 6;i++){
-            
-            int idx = this.random.Next(0,alphabet.NombreLettre());
-            string[] tabSymbole = this.alphabet.DicoLettre.Keys.ToArray();//utilisatin de system.linq
-            
-            if( this.alphabet.EnleverLettre(tabSymbole[idx])){
-                this.tabLettre[i] = this.alphabet.DicoLettre[tabSymbole[idx]];
-            }
-           
+    /// <summary>
+    /// permet de savoir si la liste en interne a ateind la capacite max de 6
+    /// </summary>
+    /// <returns>
+    /// true: si listLettre a 6 Lettres
+    /// false: listLettre a moins de 6 lettres
+    /// </returns>
+    public bool EstPlein(){
+        if(this.listLettre.Count == 6){
+            return true;
         }
-        // this.lettreVisible = this.tabLettre[this.random.Next(0,6)];
-         Console.WriteLine("dans De: " +this.alphabet.NombrelettreDisparue());
-    }//fin genererDe
+        return false;
+    }
+
+    /// <summary>
+    /// tant que la list n'a pas 6 lettres , on peut ajouter dans la liste
+    /// </summary>
+    /// <param name=""></param>
+    /// <returns>
+    /// true:on a bien ajouté l'element dans la liste
+    /// false: capacite max atteinte ou bien erreur
+    /// </returns>
+    public bool Add(Lettre lettre){
+        if(lettre.Symbole == "Z"){
+            Console.WriteLine("Lettre Z, dé plein? -->{0}",this.EstPlein());
+            if(!this.EstPlein()){
+                Console.WriteLine("Nomde face: {0}",this.NombreLettre());
+            this.listLettre.Add(lettre);
+            return true;
+            }
+            ;
+        }
+
+        else if(!this.EstPlein() && !this.Contient2Fois(lettre)){
+            this.listLettre.Add(lettre);
+            return true;
+        }
+        return false;
+    }
+
+    /// <summary>
+    /// on cherche a savoir si la lettre est deja presnte .
+    /// On accepte sur un meme dé qu'une lettre apparaisse  au max 2 fois.
+    /// </summary>
+    /// <param name="lettre"></param>
+    /// <returns>
+    /// false: indique que la lettre est presente 0 ou 1 seule fois
+    /// true: la liste contient deja 2 fois la lettre
+    /// </returns>
+    public bool Contient2Fois(Lettre lettre){
+
+        int idx1 = this.listLettre.IndexOf(lettre);
+        int idx2 = this.listLettre.LastIndexOf(lettre);
+        if (idx1 != idx2){
+            return true;
+        }
+        return false;
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <returns>le nombre de face du fé à avoir une lettre</returns>
+    public int NombreLettre(){
+        return this.listLettre.Count;
+    }
 
     public override string  ToString(){
         string de_str = "Dé:";
-        foreach (Lettre face in this.tabLettre)
+        foreach (Lettre face in this.listLettre)
         {
                 // Console.WriteLine(face.toString());
             de_str = de_str + '|'+face.Symbole ;
@@ -78,39 +155,5 @@ public class De
         return this.tabLettre[this.random.Next(0,6)];
     }
 
-    //on ajoute au dé une lettre
-    public void AddLettre(Lettre lettre){
-
-    }
-
-    // TODO
-    // On peut ajouter des regles sur les Des comme par exemple pas plus de 2 fois la meme lettre sur un Dé
-
-    // a completer
-    // public override bool Equals(object obj)
-    // {
-        //
-        // See the full list of guidelines at
-        //   http://go.microsoft.com/fwlink/?LinkID=85237
-        // and also the guidance for operator== at
-        //   http://go.microsoft.com/fwlink/?LinkId=85238
-        //
-        
-        // if (obj == null || GetType() != obj.GetType())
-        // {
-        //     return false;
-        // }
-        
-        // TODO: write your implementation of Equals() here
-    //     throw new System.NotImplementedException();
-    //     return base.Equals (obj);
-    // }
     
-    // // override object.GetHashCode
-    // public override int GetHashCode()
-    // {
-    //     // TODO: write your implementation of GetHashCode() here
-    //     throw new System.NotImplementedException();
-    //     return base.GetHashCode();
-    // }
 }

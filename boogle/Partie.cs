@@ -22,8 +22,19 @@ public class Partie
 
     public void generer(){
         Console.WriteLine("----------------------------------------------------------");
-        for (int idx = 0 ; idx< (int) Math.Pow(this.taillePlateau,2) ; idx++) {
-            this.des[idx]   = new De() ;
+        this.des = De.generer(this.alphabet,this.random);
+        foreach(De de in this.des){
+            if(de == null){
+                Console.WriteLine("dé null");
+            }
+            else if(de.NombreLettre()>0){
+                Console.WriteLine(de.ToString());
+            }
+            else
+            {
+                Console.WriteLine("dé vide");
+            }
+            
         }
 
        

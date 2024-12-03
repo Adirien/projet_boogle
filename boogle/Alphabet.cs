@@ -49,6 +49,7 @@ public class Alphabet
                 //write the line to console window
                 // Console.WriteLine('-'+line+'-');
                 string[] arr = line.Split(';');
+                Console.WriteLine("la nouvelle lettre est :{0}-{1}-{2}",arr[0],arr[1],arr[2]);
                 Lettre l = new Lettre(arr[0],Int32.Parse(arr[1]),Int32.Parse(arr[2]));
                 // on ajoute dans le dictionnnaire
                 this.dicoLettre.Add(arr[0],l) ;
@@ -85,7 +86,7 @@ public class Alphabet
         }
         
         double pct = Math.Pow(this.taillePlateau,2)*6 / sigma_frequence;
-        Console.WriteLine("sigma_frequence:{0},PCT:{1}, nbTotalLettreDé:{2}",sigma_frequence,pct,this.nombreLettreJeu );
+        // Console.WriteLine("sigma_frequence:{0},PCT:{1}, nbTotalLettreDé:{2}",sigma_frequence,pct,this.nombreLettreJeu );
         //if (pct <= 1){
             //l'addtion de toutes les frequences des lettres est superieure 
             // a tailleplateau² *6
@@ -179,6 +180,15 @@ public class Alphabet
             if(lettre.NbApparition != lettre.NbDisparition){
                 s += lettre.Symbole + " - apparition: " + Convert.ToString(lettre.NbApparition) + " - disparition: " + Convert.ToString(lettre.NbDisparition)+"\n";
             }
+        }
+        return s;
+    }
+
+
+    public override string ToString(){
+        string s = "";
+        foreach(Lettre lettre in this.dicoLettre.Values){
+            s += lettre.ToString() +"\n";
         }
         return s;
     }

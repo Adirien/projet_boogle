@@ -66,4 +66,9 @@ public string toString(){
     return String.Format("{0}-pt:{1} - f:{2}",this.symbole,this.point,this.frequence);
 }
 
+    public override string ToString()
+    {
+        return String.Format("{0}-> frequence: {1}, nbApparition: {2}",this.symbole,this.frequence,this.nbApparition);
+    }
+
 }
