@@ -20,24 +20,37 @@ public class Jeu
         this.random = new Random();
     }
 
-    public void generer(){
+
+
+    public void initialisation()
+    {
+        this.genererDes();
+        Plateau plateau = new Plateau(this.taillePlateau,this.des,this.random);
+        Console.WriteLine(plateau.ToString());
+
+
+    }
+
+    /// <summary>
+    /// Methode qui genere les des
+    /// </summary>
+    public void genererDes(){
         Console.WriteLine("----------------------------------------------------------");
         this.des = De.genererDe(this.alphabet,this.random);
-        foreach(De de in this.des){
-            if(de == null){
-                Console.WriteLine("dé null");
-            }
-            else if(de.NombreLettre()>0){
-                Console.WriteLine(de.ToString());
-            }
-            else
-            {
-                Console.WriteLine("dé vide");
-            }
+        // foreach(De de in this.des){
+        //     if(de == null){
+        //         Console.WriteLine("dé null");
+        //     }
+        //     else if(de.NombreLettre()>0){
+        //         Console.WriteLine(de.ToString());
+        //     }
+        //     else
+        //     {
+        //         Console.WriteLine("dé vide");
+        //     }
             
-        }
+     }
 
        
-    }
-   
 }
+   
