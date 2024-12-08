@@ -9,7 +9,12 @@ public class De
     //Alphabet alphabet ;
    // Random random;
     //Lettre[] tabLettre;
-    List<Lettre> listLettre;
+    List<Lettre> listLettre ;
+
+    public List<Lettre> ListLettre
+    {
+        get{return listLettre;}
+    }
     
     // Lettre lettreVisible;
 

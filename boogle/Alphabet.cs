@@ -59,7 +59,7 @@ public class Alphabet
             }
             //close the file
             sr.Close();
-            // Console.ReadLine();
+           
         }
         catch(Exception e)
         {

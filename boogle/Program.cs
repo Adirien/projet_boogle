@@ -7,10 +7,10 @@ using System;
 class Prog {
 
 
-    public static void testPartie(){
+    public static void testJeu(){
         Console.WriteLine("dans testPartie");
-        Partie partie = new Partie(4,"FR");
-        partie.generer();
+        Jeu partie = new Jeu(4,"FR");
+        
         
     }
 
@@ -41,6 +41,12 @@ class Prog {
 
     }
 
+
+    public static void jeu_afficher_plateau(){
+
+
+    }
+
     public static void Main(){
         // Console.WriteLine("Hello, World!");
         // int taille_plateau = 5;
@@ -64,8 +70,8 @@ class Prog {
         // Console.WriteLine("count {0}",entiers.Count());
 
         // // Prog.testPartie();
-        Partie partie = new Partie(4,"FR");
-        partie.generer();
+        Jeu jeu = new Jeu(4,"FR");
+        jeu.initialisation();
 
         // test de dé
         // testDe();
