@@ -42,10 +42,32 @@ class Prog {
     }
 
 
-    public static void jeu_afficher_plateau(){
-
+    public static void testerParametre(){
+        Parametre parametre = new Parametre();
+        Console.WriteLine(parametre.ToString());
+        parametre.ChangerTaillePLateau();
+        Console.WriteLine(parametre.ToString());
 
     }
+
+    public static void testJeu(){
+        Jeu jeu = new Jeu();
+        jeu.MessageDemarage();
+    }
+
+
+    public static void testSablier()
+    {
+        Sablier sablier = new Sablier(5);
+        sablier.Start();
+        while(sablier.TempsSEcoule()){
+            Console.WriteLine(sablier.ToString());
+            string s = Console.ReadLine();
+            Console.WriteLine(s);
+        }
+    }
+    
+
 
     public static void Main(){
         // Console.WriteLine("Hello, World!");
@@ -70,8 +92,19 @@ class Prog {
         // Console.WriteLine("count {0}",entiers.Count());
 
         // // Prog.testPartie();
-        Jeu jeu = new Jeu(4,"FR");
-        jeu.initialisation();
+
+        // Partie partie = new Partie(4,"FR");
+        // partie.generer();
+
+        // // test Jeu
+        // Jeu jeu = new Jeu(4,"FR");
+        // jeu.initialisation();
+
+        // testerParametre();
+        //testJeu();
+
+        testSablier();
+
 
         // test de dé
         // testDe();

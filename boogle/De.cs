@@ -6,41 +6,15 @@ namespace boogle;
 
 public class De
 {
-    //Alphabet alphabet ;
-   // Random random;
-    //Lettre[] tabLettre;
-    List<Lettre> listLettre ;
 
-    public List<Lettre> ListLettre
-    {
-        get{return listLettre;}
+    private List<Lettre> listLettre ;
+    public List<Lettre> ListLettre {
+        get {return listLettre;}
     }
-    
-    // Lettre lettreVisible;
 
-    // public Lettre face{ 
-    //     get {return lettreVisible;}
-    // } 
-
-    // public static De generation(Alphabet alphabet, Random random){
-    //     Console.WriteLine("Generation De");
-    //     Lettre[] tabLettre = new Lettre[6];
-    //     string[] tabSymbole = alphabet.DicoLettre.Keys.ToArray();//utilisatin de system.linq
-    //     int index_tab = 0;
-    //     while (index_tab <6){
-    //         int idx = random.Next(0,alphabet.NombreLettre());
-            
-    //         if( alphabet.EnleverLettre(tabSymbole[idx])){
-    //             tabLettre[index_tab] = alphabet.DicoLettre[tabSymbole[idx]];
-    //             index_tab +=1;
-    //         }
-    //     }
-    //     De de = new De();
-    //     de.tabLettre = tabLettre;
-    //     return de;
-    // }
 
     public static  De[] genererDe(Alphabet alphabet, Random random){
+
         De[] des = new De[(int) Math.Pow(alphabet.getTaillePlateau(),2)];
         //initialisation de chaque dé
         for (int i = 0 ; i < (int) Math.Pow(alphabet.getTaillePlateau(),2);i++){
