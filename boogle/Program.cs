@@ -6,14 +6,14 @@ using System;
 
 class Prog {
 
-
+/*
     public static void testJeu(){
         Console.WriteLine("dans testPartie");
         Jeu partie = new Jeu(4,"FR");
         
         
     }
-
+*/
     public static void testCreationAlphabet(){
         Alphabet alphabet = new Alphabet(4);
     }
@@ -50,6 +50,7 @@ class Prog {
 
     }
 
+
     public static void testJeu(){
         Jeu jeu = new Jeu();
         jeu.MessageDemarage();
@@ -67,6 +68,17 @@ class Prog {
         }
     }
     
+    public static void DebugDicoLangue(){
+        string langue = "FR";
+        DicoLangueV2 dicoLangueV2= new DicoLangueV2(langue);
+        // il faut mettre le mot en majuscule
+        string mot = "ZZZZ";
+        bool result = dicoLangueV2.RechDichoRecursif(mot);       
+        Console.WriteLine("{0} appartient au dico : {1}",mot,result);
+        mot = "SOIN";
+        result = dicoLangueV2.RechDichoRecursif(mot);
+        Console.WriteLine("{0} appartient au dico : {1}",mot,result);
+    }
 
 
     public static void Main(){
@@ -103,7 +115,7 @@ class Prog {
         // testerParametre();
         //testJeu();
 
-        testSablier();
+        //testSablier();
 
 
         // test de dé
@@ -111,6 +123,9 @@ class Prog {
 
         // test Alphabet
         // testCreationAlphabet();
+
+
+        DebugDicoLangue();
     
     }   
 
