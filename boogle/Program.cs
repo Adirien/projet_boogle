@@ -48,6 +48,25 @@ class Prog {
         Console.WriteLine(parametre.ToString());
 
     }
+
+    public static void testJeu(){
+        Jeu jeu = new Jeu();
+        jeu.MessageDemarage();
+    }
+
+
+    public static void testSablier()
+    {
+        Sablier sablier = new Sablier(5);
+        sablier.Start();
+        while(sablier.TempsSEcoule()){
+            Console.WriteLine(sablier.ToString());
+            string s = Console.ReadLine();
+            Console.WriteLine(s);
+        }
+    }
+    
+
     public static void Main(){
         // Console.WriteLine("Hello, World!");
         // int taille_plateau = 5;
@@ -78,7 +97,10 @@ class Prog {
         // Jeu jeu = new Jeu(4,"FR");
         // jeu.initialisation();
 
-        testerParametre();
+        // testerParametre();
+        //testJeu();
+
+        testSablier();
 
         // test de dé
         // testDe();

@@ -49,34 +49,46 @@ public class Parametre
                 while(continuer)
                 {
                         try{
-                                Console.WriteLine("Quelle taille de plateau (4 dés au min par lignes) voulez vous ?");
-                                string staillePlateau = Console.ReadLine();
-                                int t = Convert.ToInt32(staillePlateau);
-                                if (t>=4){
-                                        this.taillePlateau = t;
+                                Console.WriteLine("Quelle taille de plateau (4 dés au minimum par lignes) voulez vous ?");
+                                string? staillePlateau = Console.ReadLine();
+                                if (staillePlateau.Length == 0){
                                         continuer = false;
                                 }
                                 else
                                 {
-                                        Console.WriteLine("la taille du pateau doit etre supeireure ou egale à 4");
+                                        int t = Convert.ToInt32(staillePlateau);
+                                        if (t>=4){
+                                                this.taillePlateau = t;
+                                                continuer = false;
+                                        }
+                                        else
+                                        {
+                                                Console.WriteLine("la taille du plateau doit etre superieure ou egale à 4. Veuillez recommencer.");
+                                        }
                                 }
+                                
                                 
                         }
                         catch(Exception e){
                                 Console.WriteLine("Erreur .Veuillez recommencer.");
                         }
+                        
                 }
                 
         }
 
         public void ChangerLangue(){
-                Console.WriteLine("La langue actuelle est {0}.");
-                Console.WriteLine("Taper:\n1 Pour le français\n2 Pourl'anglais");
+                Console.WriteLine("La langue actuelle est {0}.",this.langue);
+                Console.WriteLine("Taper:\n1 Pour le français\n2 Pour l'anglais");
                 bool continuer = true;
                 while(continuer){
                         try{
-                                string choixLangue = Console.ReadLine();
-                                if (choixLangue == "1"){
+                                string? choixLangue = Console.ReadLine();
+                                if (choixLangue.Length == 0)
+                                {
+                                        continuer = false;
+                                }
+                                else if (choixLangue == "1"){
                                         this.langue = "FR";
                                         continuer = false;
                                 }
@@ -86,7 +98,7 @@ public class Parametre
                                 }
                                 else
                                 {
-                                        Console.WriteLine("Vous n'avez pas fait votre choix entre 1 et 2. Recomencez.");
+                                        Console.WriteLine("Vous n'avez pas fait votre choix entre 1 et 2. Recommencez.");
                                 }
                         }
                         catch(Exception e){
@@ -97,20 +109,28 @@ public class Parametre
 
 
         public void ChangerDuree(){
-                Console.WriteLine("Quelle est la durée en seconde de chaque tour? ");
+                Console.WriteLine("Quelle est la durée en seconde de chaque tour? (actuellement-->{0}s)",this.dureeTour);
                 bool continuer = true;
                 while(continuer)
                 {
                         try{
-                                string sduree = Console.ReadLine();
-                                int duree = Convert.ToInt32(sduree);
-                                this.dureeTour = duree;
-                                if (duree<= 0){
-                                        Console.WriteLine("Mauvaise saisie. la duree est positive");
+                                string? sduree = Console.ReadLine();
+                                if(sduree.Length == 0)
+                                {
+                                        continuer = false;
                                 }
-                                else{
-                                       continuer = false; 
+                                else
+                                {
+                                        int duree = Convert.ToInt32(sduree);
+                                        this.dureeTour = duree;
+                                        if (duree<= 0){
+                                                Console.WriteLine("Mauvaise saisie. la duree est positive");
+                                        }
+                                        else{
+                                        continuer = false; 
+                                        }
                                 }
+                                
                         }
                         catch(Exception e){
                              Console.WriteLine("Une erreur s'estr produite. Recommencez");
@@ -119,14 +139,30 @@ public class Parametre
         }// fin methode
 
         public void ChangerNbTour(){
-                Console.WriteLine("Combien de tour par personne voulez vous?");
+                Console.WriteLine("Combien de tour par personne voulez vous? (Actuellement {0} tour(s))",this.nbTour);
                 bool continuer = true;
                 while(continuer){
                         try
                         {
-                                string sNbtour = Console.ReadLine();
-                                this.nbTour = Convert.ToInt32(sNbtour);
-                                continuer = false;
+                                string? sNbtour = Console.ReadLine();
+                                if(sNbtour.Length == 0) {
+                                        continuer = false;      
+                                }
+                                else{
+                                        //this.nbTour = Convert.ToInt32(sNbtour);
+                                        int nb_tour = Convert.ToInt32(sNbtour);
+                                        if (nb_tour == 0)
+                                        {
+                                                Console.WriteLine("Vous avez saisi 0 pour le nombre de tour. Ce n'est pas possible.Recommencez.");
+                                        }
+                                        else
+                                        {
+                                                this.nbTour = nb_tour;
+                                                continuer = false;
+                                        }
+                                        
+                                }
+                                
                         }
                         catch(Exception e){
                                 Console.Write("Une erreur s'est produite. Recommencez");
@@ -136,17 +172,13 @@ public class Parametre
 
         public void MsgParametrage(){
                 Console.WriteLine(this.ToString());
-                Console.WriteLine("Tapez ENTREE pour valider le parametre actuel, sinon saisissez une valeur.");
-                /*
-                        Console.Write("Press <Enter> to exit... ");
-                        while (Console.ReadKey().Key != ConsoleKey.Enter) {}
-                        https://learn.microsoft.com/fr-fr/dotnet/api/system.console.readkey?view=net-9.0
-
-                */
+                Console.WriteLine("Pour chaque parametre, tapez <ENTREE> pour valider le parametre actuel, sinon saisissez une valeur.");
+               
                 this.ChangerTaillePLateau();
                 this.ChangerLangue();
                 this.ChangerDuree();
                 this.ChangerNbTour();
+                
         }
 
 
