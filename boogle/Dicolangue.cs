@@ -13,124 +13,72 @@ public class Dicolangue
         get { return dicolangue; }
     }
     
-    public string Langue
-    { get { return langue; }
-        set { langue = value; }
-    }
+    //index du tableau contenant la longueur des mots
+    private int indexLongueurMot = -1;
+
+    // tableau provenant de la list contenant les keys du dictionnaire dicolangue
+    private int[]? innerTab = null;
     public Dicolangue(string langue)
     {
         this.dicolangue = new Dictionary<int,List<string>>();
         this.langue = langue;
+        this.Liretxt();
 
     }
 
-    public void Liretxt()  //STOCKER DANS UN DICO PAR TAILLE DE MOTS
+    private void Liretxt()  //STOCKER DANS UN DICO PAR TAILLE DE MOTS
     {
-        if (this.langue=="francais"||this.langue=="french")
+        string? nomFichier;
+
+        //en fonction de la langue choisie on va ouvrir le fichier correspondant
+        if (this.langue == "FR")
         {
-
-            string line;
-            try
-            {
-                ///Pass the file path and file name to the StreamReader constructor
-                StreamReader sr = new StreamReader("MotsPossiblesFR.txt");
-                ///Read the first line of text
-                line = sr.ReadLine();
-                //Continue to read until you reach end of file
-                while (line != null)
-                {
-
-                    //write the line to console window
-                    // Console.WriteLine('-'+line+'-');
-                    string[] arr = line.Split(' ');
-                    for (int i=0;i<arr.Length; i++)
-                    {
-                        if (!string.IsNullOrWhiteSpace(arr[i]))
-                        {
-                            int taillemot = arr[i].Length;
-                            if (this.dicolangue.ContainsKey(taillemot)) //si la taille du mot existe deja alors ajoute a la liste
-                            {
-                                this.dicolangue[taillemot].Add(arr[i]);
-
-
-                            }
-                            else
-                            {
-                                List<string> list = new List<string>() { arr[i] }; // si la taille existe pas, ajouter une key associee a une liste
-                                this.dicolangue.Add(taillemot, list);
-                            }
-                        }
-                        
-                    }
-                    
-                    line = sr.ReadLine();
-                }
-                //close the file
-                sr.Close();
-
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Exception: " + e.Message);
-            }
-            finally
-            {
-                Console.WriteLine("Executing finally block.");
-            }
-
+            nomFichier = "MotsPossiblesFR.txt";
         }
-        else
+        else 
+        {
+            nomFichier = "MotsPossiblesEn.txt";
+        }    
+
+        try
         {
             string line;
-            try
+            StreamReader sr = new StreamReader(nomFichier);                
+            line = sr.ReadLine();
+            
+            while (line != null)
             {
+
                 
-                StreamReader sr = new StreamReader("MotsPossiblesEN.txt");
-                
-                line = sr.ReadLine();
-                
-                while (line != null)
+                string[] arr = line.Split(' ');
+                for (int i = 0; i < arr.Length; i++)
                 {
-
-                    
-                    string[] arr = line.Split(' ');
-                    for (int i = 0; i < arr.Length; i++)
+                    if (!string.IsNullOrWhiteSpace(arr[i])) // je verifie que le mot en question existe bien et ne soit pas vide car sinon dans ma liste je risque dajouter quelque chose de vide ce qui est genant
                     {
-                        if (!string.IsNullOrWhiteSpace(arr[i])) // je verifie que le mot en question existe bien et ne soit pas vide car sinon dans ma liste je risque dajouter quelque chose de vide ce qui est genant
+                        int taillemot = arr[i].Length;
+                        if (this.dicolangue.ContainsKey(taillemot)) //si la taille du mot existe deja alors ajoute a la liste
                         {
-                            int taillemot = arr[i].Length;
-                            if (this.dicolangue.ContainsKey(taillemot)) //si la taille du mot existe deja alors ajoute a la liste
-                            {
-                                this.dicolangue[taillemot].Add(arr[i]);
-
-
-                            }
-                            else
-                            {
-                                List<string> list = new List<string>() { arr[i] }; // si la taille existe pas, ajouter une key associee a une liste
-                                this.dicolangue.Add(taillemot, list);
-                            }
+                            this.dicolangue[taillemot].Add(arr[i]);
                         }
-                        
+                        else
+                        {
+                            List<string> list = new List<string>() { arr[i] }; // si la taille existe pas, ajouter une key associee a une liste
+                            this.dicolangue.Add(taillemot, list);
+                        }
                     }
-
-                    line = sr.ReadLine();
                 }
-                //close the file
-                sr.Close();
-
+                line = sr.ReadLine();
             }
-            catch (Exception e)
-            {
-                Console.WriteLine("Exception: " + e.Message);
-            }
-            finally
-            {
-                Console.WriteLine("Executing finally block.");
-            }
-
+            //close the file
+            sr.Close();
         }
-    }
+        catch (Exception ex)
+        {
+           Console.WriteLine("Exception: " + ex.Message); 
+        }
+        // on cree le tableau issu de la liste des clés  du dictionnaire
+        this.innerTab = this.dicolangue.Keys.ToArray();
+    }//fin Liretxt
 
     public bool Verifier(string mot)  // je verifier dans la liste associe a la taille du mot si on retrouve bien le mot 
     {
@@ -156,7 +104,31 @@ public class Dicolangue
         return false;
     }
 
+    public bool RechDichoRecursif(string mot)
+    {   
+        string motMajuscule = mot.ToUpper();
+        if (this.indexLongueurMot == -1){
+            
+            this.indexLongueurMot = 0;
+        }
+        if (this.indexLongueurMot>= this.innerTab.Length){            
+            this.indexLongueurMot = -1;
+            return false;
+        }
+        else
+        {
+            if(this.dicolangue[this.innerTab[this.indexLongueurMot]].Contains(motMajuscule)){
+                this.indexLongueurMot = -1;
+                return true;
+            }
+            else{
+                this.indexLongueurMot +=1;
+                return false | this.RechDichoRecursif(mot);
 
+            }
+           
+        }
+    }// fin RechDico
 
 
     public string toString()
