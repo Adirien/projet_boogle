@@ -82,25 +82,25 @@ public class DicoLangueV2
         {
            Console.WriteLine("Exception: " + ex.Message); 
         }
+        // on cree le tableau issu de la liste des clés  du dictionnaire
+        this.innerTab = this.dicolangue.Keys.ToArray();
     }//fin lire fichier
 
 
     public bool RechDichoRecursif(string mot)
     {   
         string motMajuscule = mot.ToUpper();
-        if (this.innerTab == null){
-            this.innerTab = this.dicolangue.Keys.ToArray();
+        if (this.indexLongueurMot == -1){
+            
             this.indexLongueurMot = 0;
         }
-        if (this.indexLongueurMot>= this.innerTab.Length){
-            this.innerTab = null;
+        if (this.indexLongueurMot>= this.innerTab.Length){            
             this.indexLongueurMot = -1;
             return false;
         }
         else
         {
             if(this.dicolangue[this.innerTab[this.indexLongueurMot]].Contains(motMajuscule)){
-                this.innerTab = null;
                 this.indexLongueurMot = -1;
                 return true;
             }
@@ -111,9 +111,41 @@ public class DicoLangueV2
             }
            
         }
+    }// fin RechDico
 
-        
-        
+
+    public string toString()
+    {
+        string s = "";
+        foreach(int taille in  this.dicolangue.Keys)
+        {
+            int quantite = this.dicolangue[taille].Count;
+            
+            s = s + ("il y a " + quantite + " mots de taille " + taille + "  dans la langue " + this.langue+"\n");
+        }
+        Dictionary<char,List<string>> ordrealpha=new Dictionary<char,List<string>>();
+        foreach (List<string> ligne in this.dicolangue.Values)   // ici je vais creer une autre liste pour ranger les mots par ordre alaphabetique cest demande dans lennonce
+        {
+            foreach(string mot in ligne )
+            {
+                
+                
+                    char c = mot[0];
+                    if (!ordrealpha.ContainsKey(c))
+                    {
+                        ordrealpha[c] = new List<string>();
+                    }
+                    ordrealpha[c].Add(mot);
+            }
+        }
+        foreach (char  lettre in ordrealpha.Keys)
+        {
+            int quantite = ordrealpha[lettre].Count;            
+            s = s + ("il y a " + quantite + " mots qui ont comme premiere lettre "+ lettre+ "  dans la langue " + this.langue + "\n");
+
+        }
+
+        return s;
     }
 
 

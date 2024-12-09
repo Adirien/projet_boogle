@@ -78,6 +78,7 @@ class Prog {
         mot = "SOIN";
         result = dicoLangueV2.RechDichoRecursif(mot);
         Console.WriteLine("{0} appartient au dico : {1}",mot,result);
+        Console.WriteLine(dicoLangueV2.toString());
     }
 
 
