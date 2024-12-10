@@ -11,13 +11,15 @@ public class Jeu
     private Random random;
     private De[] des ;
 
+    private Dicolangue dico;
+
 
     //liste contenant les joueurs de la partie
     private List<Joueur> lJoueur;
 
     private Parametre parametre;
 
-    private Plateau plateau;
+    //private Plateau plateau;
 
     public Jeu(){
         this.parametre = new Parametre();
@@ -57,7 +59,7 @@ public class Jeu
                 }
             }
             catch(Exception e){
-                Console.WriteLine("vVous n'avez pas saisi une des 3 valeurs");
+                Console.WriteLine("Vous n'avez pas saisi une des 3 valeurs");
             }
         }
         
@@ -70,9 +72,10 @@ public class Jeu
 
     private void Jouer(){
         this.MSgCreerJoueur();
-        // il faut initialiser les dés
+        // il faut initialiser des parametres
         this.initialisation();
-        // this.LancerPartie();
+        // on lance la partie
+        this.LancerPartie();
     }
 
     public void MSgCreerJoueur(){
@@ -123,6 +126,16 @@ public class Jeu
 
     public void LancerPartie(){
 
+        for(int num_tour = 1;  num_tour <= this.parametre.NbTour; num_tour ++){
+            foreach(Joueur joueur in this.lJoueur){
+                joueur.NumeroTour = num_tour;
+                //creation du plateau
+                Plateau plateau = new Plateau(this.parametre.taillePlateau,this.des,this.random);  
+                Tour tour = new Tour(plateau,joueur,this.parametre,this.dico,this.alphabet);
+                tour.JouerTour();
+            }
+        }
+
     }
 
     public void initialisation()
@@ -133,8 +146,9 @@ public class Jeu
         this.alphabet = new Alphabet(this.parametre.taillePlateau);
         // generation des 6 faces pour chque dé
         this.des = De.genererDe(this.alphabet,this.random);
-        //creation du plateau
-        this.plateau = new Plateau(this.parametre.taillePlateau,this.des,this.random);
+        
+        //creation du dictionnnaire
+        this.dico = new Dicolangue(this.parametre.Langue);
        
     }
 

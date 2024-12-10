@@ -6,8 +6,6 @@ using System.Runtime.Serialization.Formatters;
 
 namespace boogle;
 
- //on ne peut pas avoir 2 fois le meme dé !!
-
 public class Plateau
 {
         private De[] tabDe;
@@ -55,9 +53,9 @@ public class Plateau
                                 }
                                 rangutilise.Add(rang);
                                 De tire=tabDe[rang];
-                                Console.WriteLine("#########    ",tire.ToString());
+                                // Console.WriteLine("#########    ",tire.ToString());
                                 int index=random.Next(6);
-                                Console.WriteLine("i:{0}, j:{1},index:{2}",i,j,index);
+                                // Console.WriteLine("i:{0}, j:{1},index:{2}",i,j,index);
                                 matrice[i,j]= tire.ListLettre[index] ;
                         }
                 }
@@ -65,49 +63,49 @@ public class Plateau
         }
 
 
-// Nommé Test_Plateau dans sujet
+
        
 
-public  bool Contain(string mot,int ligne=-1,int colonne=-1,int rang=0,List<int[]>dejautilise=null)
+        public  bool Contain(string mot,int ligne=-1,int colonne=-1,int rang=0,List<int[]>dejautilise=null)
         {
-        if(dejautilise==null)
-            {
-                dejautilise= new List<int[]>();
-
-            }
-        int taille=mot.Length;
-        if(rang==0)
-            {
-                List<int[]> positiondepart = TrouverDepart(mot[0]); //trouver toutes les possbilites de depart pour faire le mot grace a la methode
-                foreach(var pos in positiondepart )     // on va regarder les differentes possibilitées et si faux chemin on fait retour en arriere
+                if(dejautilise==null)
                 {
-                    dejautilise.Add(pos);
-                        if(Contain(mot,pos[0],pos[1],rang+1,dejautilise))
-                    {
+                        dejautilise= new List<int[]>();
+
+                }
+                int taille=mot.Length;
+                if(rang==0)
+                {
+                        List<int[]> positiondepart = TrouverDepart(mot[0]); //trouver toutes les possbilites de depart pour faire le mot grace a la methode
+                        foreach(var pos in positiondepart )     // on va regarder les differentes possibilitées et si faux chemin on fait retour en arriere
+                        {
+                        dejautilise.Add(pos);
+                                if(Contain(mot,pos[0],pos[1],rang+1,dejautilise))
+                        {
+                                return true;
+                        }
+                                dejautilise.RemoveAt(dejautilise.Count-1); // si faux chemin supprimer les coordonnées de la fausse piste
+                        }
+                        return false; // si aucun chemin de depart mène au mot retourner faux
+                }
+                if (rang==taille) //cas final qui renvoie true quand toutes les lettres se suivent en respectant les règles
+                {
                         return true;
-                    }
-                        dejautilise.RemoveAt(dejautilise.Count-1); // si faux chemin supprimer les coordonnées de la fausse piste
                 }
-                return false; // si aucun chemin de depart mène au mot retourner faux
-            }
-        if (rang==taille) //cas final qui renvoie true quand toutes les lettres se suivent en respectant les règles
-            {
-                return true;
-            }
-            List<int[]> adjacents = CoordonneesAdjacentes(ligne, colonne, mot[rang], dejautilise); //liste avec toutes les possibilites de lettres pour si on prend un mauvais chemin on testera les autres
-        foreach(var adja in adjacents)
-            {
-                dejautilise.Add(adja);
-                if(Contain(mot,adja[0],adja[1],rang+1,dejautilise))  // on continue de verifier si les autres lettres du mot suivent
+                List<int[]> adjacents = CoordonneesAdjacentes(ligne, colonne, mot[rang], dejautilise); //liste avec toutes les possibilites de lettres pour si on prend un mauvais chemin on testera les autres
+                foreach(var adja in adjacents)
                 {
-                    return true;
+                        dejautilise.Add(adja);
+                        if(Contain(mot,adja[0],adja[1],rang+1,dejautilise))  // on continue de verifier si les autres lettres du mot suivent
+                        {
+                                return true;
+                        }
+                        dejautilise.RemoveAt(dejautilise.Count-1); // si la piste ne mene nul part supprimer les coordonées de la fausse piste
+
                 }
-                dejautilise.RemoveAt(dejautilise.Count-1); // si la piste ne mene nul part supprimer les coordonées de la fausse piste
+                return false; // si aucun chemin reussit
 
-            }
-            return false; // si aucun chemin reussit
-
-}
+        }//fin Contain
 
 
         public List<int[]> TrouverDepart(char caractere)
@@ -127,8 +125,6 @@ public  bool Contain(string mot,int ligne=-1,int colonne=-1,int rang=0,List<int[
                         }
 
                 }
-
-        
                 return positions; 
         }
 
@@ -156,36 +152,25 @@ public  bool Contain(string mot,int ligne=-1,int colonne=-1,int rang=0,List<int[
                                 possibilites.Add(new int[] { nouvelleligne, nouvellecolonne });   // ajout de la coordonnee si elle verifie les attentes
 
                                 }
-
                         }
-
-
                 }
                 return possibilites;
-                
-
+        
         }
-
-
-
-
-
-
-
-    public override string ToString()
-    {
-        string s ="";
-        for (int i=0;i<this.taille;i++)
+        public string toString()
         {
-                for (int j=0;j<this.taille;j++)
+                string s ="";
+                for (int i=0;i<this.taille;i++)
                 {
-                        s+=this.matrice[i,j].Symbole+" ";
+                        for (int j=0;j<this.taille;j++)
+                        {
+                                s+=this.matrice[i,j].Symbole+" ";
+                        }
+                        s+="\n";
                 }
-                s+="\n";
-        }
 
-        return s;
-    }
+                return s;
+        }
 
 
 

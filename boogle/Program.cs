@@ -6,14 +6,7 @@ using System;
 
 class Prog {
 
-/*
-    public static void testJeu(){
-        Console.WriteLine("dans testPartie");
-        Jeu partie = new Jeu(4,"FR");
-        
-        
-    }
-*/
+
     public static void testCreationAlphabet(){
         Alphabet alphabet = new Alphabet(4);
     }
@@ -114,7 +107,7 @@ class Prog {
         // jeu.initialisation();
 
         // testerParametre();
-        //testJeu();
+        testJeu();
 
         //testSablier();
 
@@ -126,7 +119,7 @@ class Prog {
         // testCreationAlphabet();
 
 
-        DebugDicoLangue();
+        // DebugDicoLangue();
     
     }   
 

@@ -7,7 +7,8 @@ public class Joueur{
     private int score;
     public int Score{get; set;}
 
-    private int numeroTour;
+    private int numeroTour;  
+
     public int NumeroTour{get; set;}
 
     /// <summary>

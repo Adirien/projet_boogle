@@ -11,10 +11,16 @@ public class Tour
 
     private Parametre parametre;
 
-    public Tour(Plateau plateau,Joueur joueur,Parametre parametre){
+    private Dicolangue dico ;
+
+    private Alphabet alphabet;
+
+    public Tour(Plateau plateau,Joueur joueur,Parametre parametre,Dicolangue dico,Alphabet alphabet){
         this.plateau = plateau;
         this.joueur = joueur;
         this.parametre = parametre;
+        this.dico = dico;
+        this.alphabet = alphabet;
     }
 
     public void JouerTour(){
@@ -39,10 +45,16 @@ public class Tour
                 else
                 {
                     // A FAIRE ici:
-                    //verifier que le mot existe sur plateau
-                    if (this.plateau.Contain(mot) && this.joueur.Contains(mot)){
-                        // Il faut le dictionnaire pour verifier qu'il existe 
-                        // puis on clcule le nombre points du mots et on met a jour le score du joueur
+                    //verifier que le mot existe sur plateau, que le mot n'ai pas deja utilisé par joueur et que le mot existe bien dans le dictioinnnaire
+                    if (this.plateau.Contain(mot) && this.joueur.Contains(mot) && this.dico.RechDichoRecursif(mot)){
+                        int score = 0;
+                        // puis on calcule le nombre points du mots et on met a jour le score du joueur
+                        foreach( char c in mot)
+                        {
+                            score = score + this.alphabet.DicoLettre[Convert.ToString(c)].getPoint();
+                        }
+                        this.joueur.Score = score;
+                        
                     }
                     // ajouter le mot a la liste du joueur,
                     
