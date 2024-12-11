@@ -41,7 +41,7 @@ public class Jeu
             Console.WriteLine("2 Configurer le jeu");
             Console.WriteLine("3 Quitter le jeu");
             string? sreponse = Console.ReadLine();
-            try{
+            // try{
                 int reponse = Convert.ToInt32(sreponse);
                 if(reponse == 1){
                     continuer = false;
@@ -59,10 +59,10 @@ public class Jeu
                 {
                     this.Quitter();
                 }
-            }
-            catch(Exception e){
-                Console.WriteLine("Vous n'avez pas saisi une des 3 valeurs");
-            }
+            // }
+            // catch(Exception e){
+            //     Console.WriteLine("Vous n'avez pas saisi une des 3 valeurs");
+            // }
         }
         
     }
@@ -148,6 +148,9 @@ public class Jeu
         this.des= new De[(int)Math.Pow(this.parametre.taillePlateau,2)];
         //creation de l'alphabet
         this.alphabet = new Alphabet(this.parametre.taillePlateau);
+
+        Console.WriteLine("initialisation ->, nombre de lettre au total {0}", this.alphabet.NbTotalApparition());
+
         // generation des 6 faces pour chque dé
         this.des = De.genererDe(this.alphabet,this.random);
         
@@ -157,7 +160,7 @@ public class Jeu
     }
 
     /// <summary>
-    /// on affiche dans la console le resultat de la partie avec le scor pour chque joueur
+    /// on affiche dans la console le resultat de la partie avec le score pour chque joueur
     /// ainsi que les mots trouvés par ce dernier à chaque tour.
     /// </summary>
     private void AfficherResulatPartie()

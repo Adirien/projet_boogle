@@ -7,8 +7,12 @@ using System;
 class Prog {
 
 
-    public static void testCreationAlphabet(){
-        Alphabet alphabet = new Alphabet(4);
+    public static void testAlphabet(){
+        int taille = 6;
+        Alphabet alphabet = new Alphabet(taille);
+        Console.WriteLine(alphabet.toString());
+        Console.WriteLine("Nombre de lettre dans le jeu: {0}",alphabet.NombreLettreJeu);
+        Console.WriteLine(alphabet.NbTotalApparition());
     }
 
     public static void testDe(){
@@ -76,11 +80,8 @@ class Prog {
 
 
     public static void Main(){
-        // Console.WriteLine("Hello, World!");
-        // int taille_plateau = 5;
-        // Alphabet alphabet= new Alphabet(taille_plateau);
-        // // alphabet.readLettreFile();
-        // // alphabet.RepartitionFrequenceLettre();
+       
+        testAlphabet();
 
         // // Pour le Dé
         // Random  random = new Random();
@@ -107,7 +108,7 @@ class Prog {
         // jeu.initialisation();
 
         // testerParametre();
-        testJeu();
+        //testJeu();
 
         //testSablier();
 

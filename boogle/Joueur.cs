@@ -62,7 +62,10 @@ public class Joueur{
                 mots += String.Format("{0},", mot);
             }
             // on enleve le dernier caractere car il s'agit d'une virgule
-            mots = mots[0..^1];
+            if (mots != ""){
+                mots = mots[0..^1];
+            }
+            
             s += String.Format("le tour n° {0} contient les mots [{1}] ",num_tour,mots);
         }
         return s;
