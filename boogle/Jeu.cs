@@ -46,12 +46,14 @@ public class Jeu
                 if(reponse == 1){
                     continuer = false;
                     this.Jouer();
+                    this.RelancerPartie();
                 }
                 else if(reponse == 2)
                 {
                     continuer = false;
                     this.parametre.MsgParametrage();
                     this.Jouer();
+                    this.RelancerPartie();
                 }
                 else if (reponse == 3)
                 {
@@ -72,10 +74,11 @@ public class Jeu
 
     private void Jouer(){
         this.MSgCreerJoueur();
-        // il faut initialiser des parametres
+        // il faut initialiser les parametres
         this.initialisation();
         // on lance la partie
         this.LancerPartie();
+        this.AfficherResulatPartie();
     }
 
     public void MSgCreerJoueur(){
@@ -111,6 +114,7 @@ public class Jeu
                 }
                 else
                 {
+                    
                     Joueur joueur = new Joueur(sreponse);
                     this.lJoueur.Add(joueur);
                     nb_joueur +=1;
@@ -152,7 +156,47 @@ public class Jeu
        
     }
 
-    
+    /// <summary>
+    /// on affiche dans la console le resultat de la partie avec le scor pour chque joueur
+    /// ainsi que les mots trouvés par ce dernier à chaque tour.
+    /// </summary>
+    private void AfficherResulatPartie()
+    {
+        Console.WriteLine("\nVoici les résultats:");
+        foreach(Joueur joueur in this.lJoueur)
+        {
+            Console.WriteLine(joueur.toString());
+            Console.WriteLine("______________________________________");
+        }
+    }
+
+    private bool RelancerPartie(){
+        Console.WriteLine("La partie est terminée. Voulez rejourer ?\nTapez:");
+        Console.WriteLine("1 - Pour rejouer (avec les memes joueurs)");
+        Console.WriteLine("2 - Pour quitter le jeu");
+        while(true)
+        {
+            try
+            {
+                string reponse = Console.ReadLine();
+                if (reponse == "1"){
+                    return true;
+                }
+                else if (reponse == "2")
+                {
+                    return false;
+                }
+                else
+                {
+                    Console.WriteLine("Mauvaise saisie. Recommencez SVP");
+                }
+            }
+            catch (Exception ex){
+                Console.WriteLine("Une erreur s'est produite");
+            }
+        }
+        
+    }// fin relancerpartie
 
        
 }

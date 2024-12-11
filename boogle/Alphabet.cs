@@ -49,7 +49,7 @@ public class Alphabet
                 //write the line to console window
                 // Console.WriteLine('-'+line+'-');
                 string[] arr = line.Split(';');
-                Console.WriteLine("la nouvelle lettre est :{0}-{1}-{2}",arr[0],arr[1],arr[2]);
+                // Console.WriteLine("la nouvelle lettre est :{0}-{1}-{2}",arr[0],arr[1],arr[2]);
                 Lettre l = new Lettre(arr[0],Int32.Parse(arr[1]),Int32.Parse(arr[2]));
                 // on ajoute dans le dictionnnaire
                 this.dicoLettre.Add(arr[0],l) ;
@@ -65,11 +65,8 @@ public class Alphabet
         {
             Console.WriteLine("Exception: " + e.Message);
         }
-        finally
-        {
-            Console.WriteLine("Executing finally block.");
-        }
-    }
+        
+    }//readlettrefile
 
     /// <summary>
     /// Method repartitionFrequenceLettre
@@ -95,7 +92,7 @@ public class Alphabet
                 lettre.NbApparition= Decimal.ToInt32(Convert.ToDecimal(Math.Round(lettre.Frequence * pct )));
                 // Console.WriteLine("nombre d'apparition:{0}",Math.Round(lettre.Frequence * pct)) ;
                 lettre.NbDisparition = lettre.NbApparition;
-                Console.WriteLine("lettre {0} , frequence {1}, nb apparaition:{2}, nbdisparition: {3}",lettre.Symbole,lettre.Frequence,lettre.NbApparition,lettre.NbDisparition);
+                // Console.WriteLine("lettre {0} , frequence {1}, nb apparaition:{2}, nbdisparition: {3}",lettre.Symbole,lettre.Frequence,lettre.NbApparition,lettre.NbDisparition);
             }
             // on trie l'image du tableau issu du dictionnaire selon le champ nbApparition
             // que l'on place dans une variable nommée tabLettre. Ce tableau est trié par ordre decroissant sur le champ nbApparition de chaque lettre
@@ -107,7 +104,7 @@ public class Alphabet
                     Lettre lettre = tabLettre[index];  
                     lettre.NbApparition -=1;
                     lettre.NbDisparition -=1;    
-                    Console.WriteLine("-->lettre {0} apparation:{1}", lettre.Symbole, lettre.NbApparition);
+                    // Console.WriteLine("-->lettre {0} apparation:{1}", lettre.Symbole, lettre.NbApparition);
                     index +=1;
                 }
             }
@@ -174,15 +171,15 @@ public class Alphabet
     /// methode qui renvoie les lettres dont on n'a pas la meme valeur entre lettreApparition et lettreDisparition
     /// </summary>
     /// <returns></returns>
-    public string NombrelettreDisparue(){
-        string s = "";
-        foreach(Lettre lettre in this.dicoLettre.Values){
-            if(lettre.NbApparition != lettre.NbDisparition){
-                s += lettre.Symbole + " - apparition: " + Convert.ToString(lettre.NbApparition) + " - disparition: " + Convert.ToString(lettre.NbDisparition)+"\n";
-            }
-        }
-        return s;
-    }
+    // public string NombrelettreDisparue(){
+    //     string s = "";
+    //     foreach(Lettre lettre in this.dicoLettre.Values){
+    //         if(lettre.NbApparition != lettre.NbDisparition){
+    //             s += lettre.Symbole + " - apparition: " + Convert.ToString(lettre.NbApparition) + " - disparition: " + Convert.ToString(lettre.NbDisparition)+"\n";
+    //         }
+    //     }
+    //     return s;
+    // }
 
 
     public override string ToString(){

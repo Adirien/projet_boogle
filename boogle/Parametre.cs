@@ -171,7 +171,7 @@ public class Parametre
         }
 
         public void MsgParametrage(){
-                Console.WriteLine(this.ToString());
+                Console.WriteLine(this.toString());
                 Console.WriteLine("Pour chaque parametre, tapez <ENTREE> pour valider le parametre actuel, sinon saisissez une valeur.");
                
                 this.ChangerTaillePLateau();
@@ -182,7 +182,7 @@ public class Parametre
         }
 
 
-        public override string ToString()
+        public string toString()
         {
         string s = "Parametres du jeu:\n";
         s += String.Format("Taille du plateau: {0}\n",this.taillePlateau);

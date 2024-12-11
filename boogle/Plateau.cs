@@ -19,21 +19,6 @@ public class Plateau
                 this.tabDe = tabDe;
                 this.taille = taille;
                 this.random=random;
-                foreach(De de in this.tabDe){
-                        if(de == null){
-                                Console.WriteLine("dé null");
-                        }
-                        else if(de.NombreLettre()>0){
-                                Console.WriteLine(de.ToString());
-                        }
-                        else
-                        {
-                                Console.WriteLine("dé vide");
-                        }
-                }       
-
-
-
                 this.matrice  = this.DefinirPlateau();            
         }
 
