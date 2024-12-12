@@ -38,7 +38,6 @@ public class Plateau
                                 }
                                 rangutilise.Add(rang);
                                 De tire=tabDe[rang];
-                                Console.WriteLine("#########   {0} ",tire.toString());
                                 int index=random.Next(6);
                                 // Console.WriteLine("i:{0}, j:{1},index:{2}",i,j,index);
                                 matrice[i,j]= tire.ListLettre[index] ;

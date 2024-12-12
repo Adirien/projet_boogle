@@ -81,7 +81,7 @@ class Prog {
 
     public static void Main(){
        
-        testAlphabet();
+        // testAlphabet();
 
         // // Pour le Dé
         // Random  random = new Random();
@@ -108,7 +108,7 @@ class Prog {
         // jeu.initialisation();
 
         // testerParametre();
-        //testJeu();
+        
 
         //testSablier();
 
@@ -121,6 +121,7 @@ class Prog {
 
 
         // DebugDicoLangue();
+        testJeu();
     
     }   
 

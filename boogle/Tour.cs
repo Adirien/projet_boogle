@@ -33,7 +33,7 @@ public class Tour
         sablier.Start();
         while(true)
         {
-           
+            Console.WriteLine("Saisissez un nouveau mot trouvé");
             string? mot = Console.ReadLine();
             if (mot.Length>0){
                 mot = mot.ToUpper();
@@ -57,6 +57,7 @@ public class Tour
                         }
                         this.joueur.Score = this.joueur.Score + score;
                         this.joueur.AddMot(mot);
+                        Console.WriteLine("Le score de {0} est de {1} grace aux mots cités suivants:\n {2}",this.joueur.Pseudo,this.joueur.Score,this.joueur.AfficherListTourEncours());
                     }
                     // ajouter le mot a la liste du joueur,
                     

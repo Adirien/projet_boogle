@@ -52,6 +52,22 @@ public class Joueur{
         return false;
     }
 
+    /// <summary>
+    /// On renvoie la liste contenant les mots trouvés 
+    /// durant le tour en cours
+    /// </summary>
+    /// <returns> La Liste des mots
+    /// </returns>
+    public string AfficherListTourEncours(){
+        string s = "";
+        foreach(string mot in this.motsTrouves[this.numeroTour])
+        {
+
+            s += mot+" ";
+        }
+        return s;
+    }
+
     public string toString() { 
         string s = String.Format("Le joueur {0} a {1} points.\n",this.pseudo,this.score);
         foreach (int num_tour in this.motsTrouves.Keys){
