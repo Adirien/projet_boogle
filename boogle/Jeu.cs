@@ -1,6 +1,6 @@
 using System;
 
-using System.Runtime.InteropServices.Marshalling;
+//using System.Runtime.InteropServices.Marshalling;
 
 namespace boogle;
 
@@ -127,7 +127,10 @@ public class Jeu
         
     }
 
-
+    /// <summary>
+    /// Onlance une partie. 
+    /// Celle-ci est composée par n tours. Dans chque tous , tous les joueurs jouent une seule fois.
+    /// </summary>
     public void LancerPartie(){
 
         for(int num_tour = 1;  num_tour <= this.parametre.NbTour; num_tour ++){
@@ -149,9 +152,7 @@ public class Jeu
         //creation de l'alphabet
         this.alphabet = new Alphabet(this.parametre.taillePlateau);
 
-        Console.WriteLine("initialisation ->, nombre de lettre au total {0}", this.alphabet.NbTotalApparition());
-
-        // generation des 6 faces pour chque dé
+        // generation des 6 faces pour chaque dé
         this.des = De.genererDe(this.alphabet,this.random);
         
         //creation du dictionnnaire
@@ -174,7 +175,7 @@ public class Jeu
     }
 
     private bool RelancerPartie(){
-        Console.WriteLine("La partie est terminée. Voulez rejourer ?\nTapez:");
+        Console.WriteLine("La partie est terminée. Voulez rejouer ?\nTapez:");
         Console.WriteLine("1 - Pour rejouer (avec les memes joueurs)");
         Console.WriteLine("2 - Pour quitter le jeu");
         while(true)

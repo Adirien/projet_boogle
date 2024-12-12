@@ -22,16 +22,14 @@ public class De
             des[i]= de;
         }
         foreach(Lettre lettre in alphabet.DicoLettre.Values){
-            // Console.WriteLine("############  lettre en cours {0}",lettre.Symbole);
+            
             // on boucle sur le nombre de disparition possible de la lettre
             for(int nb =0; nb< lettre.NbApparition;nb++){
-                // Console.WriteLine("valeur du nombre d'appartion: {0}",nb);
+                
                 //on choisit le dé dans lequel on ajoute la lettre
                 bool arreter = false;
                 while (! arreter){
                     int index_de = random.Next(des.Length);
-                    // Console.WriteLine("choix dé n° {0}",index_de);
-                    // Console.WriteLine("valeur contiens2fois: {0}",des[index_de].Contient2Fois(lettre));
                     arreter = des[index_de].Add(lettre);
                     
                 }              

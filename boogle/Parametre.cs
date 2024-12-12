@@ -185,10 +185,10 @@ public class Parametre
         public string toString()
         {
         string s = "Parametres du jeu:\n";
-        s += String.Format("Taille du plateau: {0}\n",this.taillePlateau);
-        s += String.Format("Langue du Jeu: {0}\n",this.langue);
-        s += String.Format("Durée d'un tour: {0}\n",this.dureeTour);
-        s += String.Format("Nombre de tour pour chaque joueur: {0}",this.nbTour);
+        s += String.Format("\tTaille du plateau: {0}\n",this.taillePlateau);
+        s += String.Format("\tLangue du Jeu: {0}\n",this.langue);
+        s += String.Format("\tDurée d'un tour: {0}\n",this.dureeTour);
+        s += String.Format("\tNombre de tour pour chaque joueur: {0}\n",this.nbTour);
         return s;
         }
 }

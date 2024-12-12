@@ -19,14 +19,20 @@ public class Sablier
         timeSpan = new TimeSpan(0, 0,secondes);
     }
 
+    /// <summary>
+    /// on recupure le moment où le tour commence
+    /// on ajoute la duree du tour : timeSpan
+    /// </summary>
     public void Start()
     {
+        //moment ou le tour debute
         startDateTime = DateTime.Now;
+        // moment où le tour s'arrete
         endDateTime = startDateTime.Add(timeSpan);
     }
 
     /// <summary>
-    /// On s'informe si le temps s'ecole encore ou pas.
+    /// On s'informe si le temps s'ecoule encore ou pas.
     /// 
     /// </summary>
     /// <returns>
@@ -39,7 +45,7 @@ public class Sablier
         return  currentTime<= endDateTime;    
     }
 
-    public override string ToString()
+    public string toString()
     {
         TimeSpan interval = this.endDateTime - this.currentTime;
         return String.Format("{0}",interval.ToString());            
