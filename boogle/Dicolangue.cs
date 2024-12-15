@@ -80,29 +80,29 @@ public class Dicolangue
         this.innerTab = this.dicolangue.Keys.ToArray();
     }//fin Liretxt
 
-    public bool Verifier(string mot)  // je verifier dans la liste associe a la taille du mot si on retrouve bien le mot 
-    {
+    // public bool Verifier(string mot)  // je verifier dans la liste associe a la taille du mot si on retrouve bien le mot 
+    // {
         
-        int taille=mot.Length;
-        if (this.dicolangue.ContainsKey(taille))
-        {
-            List<string> liste= dicolangue[taille];
-            int longueur=liste.Count;
-            for (int i = 0;i < longueur;i++)
-            {
-                if (liste[i].ToLower()==mot)
-                {
-                    return true;
+    //     int taille=mot.Length;
+    //     if (this.dicolangue.ContainsKey(taille))
+    //     {
+    //         List<string> liste= dicolangue[taille];
+    //         int longueur=liste.Count;
+    //         for (int i = 0;i < longueur;i++)
+    //         {
+    //             if (liste[i].ToLower()==mot)
+    //             {
+    //                 return true;
                     
-                }
+    //             }
 
 
-            }
+    //         }
 
             
-        }
-        return false;
-    }
+    //     }
+    //     return false;
+    // }
 
     public bool RechDichoRecursif(string mot)
     {   

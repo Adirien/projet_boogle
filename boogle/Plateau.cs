@@ -22,7 +22,7 @@ public class Plateau
                 this.matrice  = this.DefinirPlateau();            
         }
 
-        public Lettre[,] DefinirPlateau()
+        private Lettre[,] DefinirPlateau()
         {
                 Lettre[,] matrice=new Lettre[this.taille,this.taille];
                 List<int> rangutilise = new List<int>();
@@ -92,7 +92,7 @@ public class Plateau
         }//fin Contain
 
 
-        public List<int[]> TrouverDepart(char caractere)
+        private List<int[]> TrouverDepart(char caractere)
         {
                 List<int[]> positions = new List<int[]>(); // la liste permet de garder toutes les possibilites de chemin en stock au cas où on part sur une fausse piste
                 int nbligne = this.matrice.GetLength(0);
@@ -113,7 +113,7 @@ public class Plateau
         }
 
 
-        public List<int[]>CoordonneesAdjacentes(int ligne, int colonne, char caractere, List<int[]>dejautilise=null)
+        private List<int[]>CoordonneesAdjacentes(int ligne, int colonne, char caractere, List<int[]>dejautilise=null)
         {
                 if(dejautilise==null)
                 {
