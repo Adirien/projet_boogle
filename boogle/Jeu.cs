@@ -45,15 +45,26 @@ public class Jeu
                 int reponse = Convert.ToInt32(sreponse);
                 if(reponse == 1){
                     continuer = false;
-                    this.Jouer();
-                    this.RelancerPartie();
+                this.Jouer(false);
+                bool x = this.RelancerPartie();
+                while (x)
+                {
+                    this.Jouer(x);
+                    x = this.RelancerPartie();
                 }
+
+            }
                 else if(reponse == 2)
                 {
                     continuer = false;
                     this.parametre.MsgParametrage();
-                    this.Jouer();
-                    this.RelancerPartie();
+                    this.Jouer(false);
+                    bool x=this.RelancerPartie();
+                while (x) 
+                { 
+                    this.Jouer(x);
+                    x = this.RelancerPartie();
+                }
                 }
                 else if (reponse == 3)
                 {
@@ -72,13 +83,28 @@ public class Jeu
         System.Environment.Exit(1);
     }
 
-    private void Jouer(){
-        this.MSgCreerJoueur();
-        // il faut initialiser les parametres
-        this.initialisation();
-        // on lance la partie
-        this.LancerPartie();
-        this.AfficherResulatPartie();
+    private void Jouer(bool x){
+
+
+        if (x==true)
+        {
+            this.initialisation();
+            this.LancerPartie();
+            this.AfficherResulatPartie();
+        }
+        else
+        {
+            this.MSgCreerJoueur();
+            // il faut initialiser les parametres
+            this.initialisation();
+            // on lance la partie
+            this.LancerPartie();
+            this.AfficherResulatPartie();
+        }
+           
+
+        
+        
     }
 
     public void MSgCreerJoueur(){
@@ -139,7 +165,17 @@ public class Jeu
                 //creation du plateau
                 Plateau plateau = new Plateau(this.parametre.taillePlateau,this.des,this.random);  
                 Tour tour = new Tour(plateau,joueur,this.parametre,this.dico,this.alphabet);
-                tour.JouerTour();
+                Console.WriteLine("cliquer sur ENTREE pour lancer la manche du joueur "); //tant qu le joueur na pas fait entre la manche ne se lance pas
+                string touche=Console.ReadLine();
+                while(touche.Length != 0) {
+                    Console.WriteLine("cliquer sur ENTREE pour lancer la manche du joueur ");
+                     touche = Console.ReadLine();
+                }
+                if (touche.Length==0)
+                {
+                    tour.JouerTour();
+                }
+              
             }
         }
 
