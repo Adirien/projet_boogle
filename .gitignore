@@ -8,4 +8,5 @@ boogle.sln
 /boogletest/boogletest.csproj
 /boogletest/bin/*
 /boogletest/obj/*
+/.vs
 
