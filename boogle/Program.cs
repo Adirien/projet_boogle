@@ -79,6 +79,18 @@ class Prog {
     }
 
 
+
+    public static void DebugDicoParDichotomie(){
+        string langue = "FR";
+        DicoParDichotomie dico = new DicoParDichotomie(langue);
+        dico.ConstruireDico();
+        string mot = "PAPA";
+        Console.WriteLine("{0} contenu dans liste ?: {1}",mot,dico.RechDicoRecursif(mot,0,dico.NombreMot()-1));
+        mot = "BUVARD";
+        Console.WriteLine("{0} contenu dans liste ?: {1}",mot,dico.RechDicoRecursif(mot,0,dico.NombreMot()-1));
+
+    }
+
     public static void Main(){
        
         // testAlphabet();
@@ -121,7 +133,9 @@ class Prog {
 
 
         // DebugDicoLangue();
-        testJeu();
+        // testJeu();
+
+        DebugDicoParDichotomie();
     
     }   
 

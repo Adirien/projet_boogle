@@ -27,7 +27,7 @@ public class Sablier
     {
         //moment ou le tour debute
         startDateTime = DateTime.Now;
-        // moment où le tour s'arrete
+        // moment où le tour s'arrete 
         endDateTime = startDateTime.Add(timeSpan);
     }
 
